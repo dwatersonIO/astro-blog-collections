@@ -1,0 +1,138 @@
+---
+import "../styles/global.css";
+---
+
+<header>
+  <nav class="navbar">
+    <div class="brand-title">
+      <a href="/">advisor wanted</a>
+    </div>
+
+    <div class="nav-list">
+      <ul>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/">Portfolio</a></li>
+        <!-- <li><a href="https://lucia-waterson.pixels.com/">Beautiful Art</a></li> -->
+        <img id="icon" data-theme-change src="/assets/dark.png" alt=""/> 
+      </ul>
+    </div>
+  </nav>
+
+  <script is:inline>
+ 
+  const LS_THEME = 'astro.theme'
+  let selectedTheme   
+  let icon = document.getElementById("icon")
+  
+  if (localStorage.getItem(LS_THEME)) {   // Check if a theme already in local storage
+    selectedTheme = localStorage.getItem(LS_THEME)   // Set selectedTheme to local storage value
+      if (selectedTheme === "light") {  
+        icon.src = "/assets/dark.png"   // if theme is light then icon should be to change to dark
+      } else {
+        selectedTheme = "dark" 
+        icon.src = "/assets/light.png"   // if theme is dark then icon should be to change to light   
+      }         
+  } else {
+    selectedTheme = "light"   // if no theme in local storage default to light theme
+    localStorage.setItem(LS_THEME, selectedTheme)
+    icon.src = "/assets/light.png"
+  }
+  
+  document.documentElement.setAttribute("data-theme", selectedTheme) 
+
+  const themeChangeButton = document.querySelector('[data-theme-change]')
+  
+  themeChangeButton.addEventListener('click', e => {
+    let selectedTheme = localStorage.getItem(LS_THEME)      
+
+    if ( selectedTheme == 'light') {
+      selectedTheme = 'dark'
+      icon.src = "/assets/light.png"
+    } else {
+      selectedTheme = 'light'
+      icon.src = "/assets/dark.png"
+    }
+    
+    document.documentElement.setAttribute("data-theme", selectedTheme);
+    localStorage.setItem(LS_THEME, selectedTheme)
+  })
+
+
+  
+  </script>
+
+</header>
+
+
+<style>
+  .navbar {
+    padding: 0.6em 0 0.6em 0em;
+    display: flex;
+
+    /* brand to left, space in between then menu to the right */
+    justify-content: space-between;
+
+    /* centre text vertically */
+    align-items: center;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .brand-title a {
+    color: var(--text-col-highlight);
+    font-size: calc(var(--text-size) * 2.2);
+    font-family: 'Permanent Marker', cursive;
+    letter-spacing: 2px;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .nav-list ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list li {
+    list-style: none;
+  }
+
+  .nav-list li a {
+    text-decoration: none;
+    color: var(--brand);
+    padding: 0 0.8em 0 0;
+    font-size: calc(var(--text-size) * 1.1);
+    font-weight: 600;
+  }
+
+  .nav-list li a:hover {
+    color: var(--soft-brand);
+  }
+
+  .brand-title a:hover {
+    color: var(--soft-brand);
+  }
+
+
+  
+ #icon {
+  width: 30px;
+  cursor: pointer;
+  margin: 0 1em 0 0
+  }
+
+  @media (max-width: 600px) {
+  .navbar {
+    min-height: 8vh;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-title a {
+    font-size: calc(var(--text-size) * 2.2);
+  }
+
+  .nav-list ul {
+    flex-direction: column;
+  }
+}
+
+</style>

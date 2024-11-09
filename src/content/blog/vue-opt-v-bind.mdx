@@ -1,0 +1,50 @@
+---
+title: Vue Options API V-bind
+author: David Waterson
+date: 2024-08-07
+category: computers
+tags: [vue]
+description: Vue Options API-How to use v-bind directive
+---
+# {frontmatter.title}
+> {frontmatter.description}
+
+## Simple example using the v-bind
+
+V-bind can be shorted to simply : as shown below.
+
+
+```html
+<body>        
+    <div id="app">
+        <p v-bind:class="paraClass">Paragraph style is red</p>
+        <h3 :class="headingClass">Heading style is green</h3>
+    </div>  
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const { createApp } = Vue
+        const app = createApp ({
+            data () {
+                return {
+                    paraClass: "red",
+                    headingClass: "green"
+                }
+            },
+        })
+        app.mount('#app')
+        </script>
+    </body>
+</html>
+
+<style>
+.red {
+    color: red
+}
+.green {
+    color: green
+}
+</style>
+
+```

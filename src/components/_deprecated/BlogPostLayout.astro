@@ -1,0 +1,97 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import TagsFilter from "../components/TagsFilter.astro";
+
+const { frontmatter } = Astro.props;
+---
+<!-- TODO Here is my comment -->
+<!-- ! Here is my comment -->
+<?-- ! Here is my comment -->
+<!-- * Here is my comment -->
+
+<BaseLayout>
+  <TagsFilter />
+
+  <section>
+    <div class="post-details-container">
+
+      <div class="post-title">
+        <h1>{frontmatter.title}</h1>
+      </div>
+
+      <div class="post-date">
+         {new Date(frontmatter.date).toLocaleDateString()}
+      </div>  
+      
+      <div class="post-tags-list">    
+          {
+            frontmatter.tags.map((tag) => (
+              <span class="post-tag">{tag + " "}</span>
+            ))
+          }
+      </div>
+        
+    </div>  
+  <slot />
+  </section>
+</BaseLayout>
+
+<style>
+
+
+/* Below sets display flex on summary of one blog post since enough space to fit all on one line */
+.post-details-container {
+    display: flex;  
+    flex-direction: row; /* default but specified anyway */
+    flex-wrap: wrap;
+    align-items: center; /* aligning items vertically */
+
+} 
+
+.post-title {
+    padding-right: 1em;
+
+}
+
+.post-date {
+    font-size: calc(var(--text-size) * .7);
+    padding-right: 1em;
+}
+
+.post-tags-list {
+  /* padding: 2px 5px 3px 5px; */
+  /* border-radius: 4px;
+  border: 1px solid var(--brand); */
+  text-decoration: none;
+  font-size: calc(var(--text-size) *.7 );
+  margin-right: calc(var(--text-size) * .3);
+}
+
+.post-tag {
+  padding: 2px 4px 2px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--brand);
+  /* text-decoration: none;
+  font-size: calc(var(--text-size) *.7 ); */
+  margin-right: calc(var(--text-size) * .3); 
+}
+/* h2 = blog subheading */
+
+@media (max-width: 600px) {
+.container {
+    grid-template-columns: 1fr;
+}
+.post-tags-list {
+  font-size: calc(var(--text-size) *.5 );
+  margin-right: calc(var(--text-size) * .3);
+}
+
+.post-tag {
+  padding: 2px 4px 2px 4px;
+  border-radius: 4px;
+  border: 1px solid var(--brand);
+  margin-right: calc(var(--text-size) * .3); 
+  gap: 1em;
+}
+</style>
+

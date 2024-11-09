@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPostContentLayout from "../../layouts/BlogPostContentLayout.astro";
+import TagsFilter from "../../components/TagsFilter.astro";
+import BlogPostSummary from "../../components/BlogPostSummary.astro";
+
+export async function getStaticPaths() {
+    const allBlogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+    return allBlogPosts.map(blogPost => ({
+        params: {
+            slug: blogPost.slug
+        },
+        props: {blogPost}
+    }))
+    }
+const { blogPost } = Astro.props
+const { Content } = await blogPost.render()
+---
+<BaseLayout>
+<TagsFilter />
+
+<!-- Deleted line below since will put title and summary in each post -->
+<BlogPostSummary blogPost={blogPost} linkToBlog={false}/>
+
+<BlogPostContentLayout>
+    <Content />
+</BlogPostContentLayout>
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+const { posts } = Astro.props;
+---
+<section class="container">
+{
+   
+    posts.slice(0, 100).map((post) => (
+    <div class="posts-preview">
+        <div>
+            <h1 class="post-title"><a href={post.url}>{post.frontmatter.title}</a></h1>
+                
+                <span class="post-date">
+                    {new Date(post.frontmatter.date).toLocaleDateString()}
+                </span>
+
+                {post.frontmatter.tags.map((tag) => (
+                    <span class="post-tags">{tag + " "}</span>
+                ))}
+        </div>
+
+        <div class="post-description">
+            <h3>
+                {post.frontmatter.description}{" "}
+                <a class="read-more" href={post.url}>
+                    Read more...
+                </a>
+            </h3>
+        </div>
+    </div>    
+    ))
+
+}     
+</section>
+
+<style> 
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    /* padding: 10px 10px 10px 10px; */
+    /* background-color: red; */ 
+    /* border: 1px solid red;  */
+    }
+
+.posts-preview {
+    /* border:  2px solid  var(--brand);*/
+    border-radius: .5em; 
+    padding: 10px 10px 10px 10px; 
+    background-color: var(--bg-col-fade);
+}
+.post-title {
+    margin-top: 0;
+}
+.post-date {
+    font-size: calc(var(--text-size) * .7);
+}
+
+.post-tags {
+  padding: 3px 6px 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--brand);
+  text-decoration: none;
+  font-size: calc(var(--text-size) * .7 );
+  margin-right: calc(var(--text-size) * .3);
+}
+
+.post-description {
+    margin-top: .3rem;
+    line-height: 1.2; 
+}
+
+@media (max-width: 600px) {
+.container {
+    grid-template-columns: 1fr;
+}
+}
+</style>
+

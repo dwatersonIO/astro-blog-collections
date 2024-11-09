@@ -1,0 +1,25 @@
+---
+title: Useful PIP commands
+author: David Waterson
+date: 2022-12-31
+category: computers
+tags: [python]
+description: PIP has lots of parameters. Here is a cheat sheet for the most common ones.    
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Handling the requirements.txt file
+
+To make a requirements.txt that shows all the Python packages required for your projected use:
+
+```py
+pip freeze > requirements.txt
+```
+
+Then if you need to install from a requirements.txt file from another repository you have forked then use the following:
+
+```py
+pip install -r requirements.txt
+```
+
+

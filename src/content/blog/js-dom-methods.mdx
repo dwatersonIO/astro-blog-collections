@@ -1,0 +1,92 @@
+---
+title: Most important DOM Manipulation
+author: David Waterson
+date: 2022-12-29
+category: 
+tags: [javascript]
+description:  Quick summary of the principle DOM manipulation methods in Javascript
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Append elements
+
+With `append` can append multiple things but with 'appendChild' cannot append strings only elements
+```js
+const body = document.body
+body.append("Hello World")
+
+```
+## Create elements
+
+```js
+const div = document.createElement("div") // but now need to add to html
+div.innerText = "Text Inside of Div"
+body.append(div)
+```
+Can use `innerText` or `textContent`. `innerText` will look at CSS to see if display. Also `textContent` will also display all html inside the element.
+To render HTML inside element use `innerHTML`. But do not allow users to inject.
+
+## Remove Element
+
+Code below will remove the element with ID "bye"
+
+```js
+<div>
+    <span id="hi">Hi</span>
+    <span id="bye">Bye</span>
+</div>
+
+const body = document.body;
+const div = document.querySelector("div");
+const spanHi = document.querySelector("#hi");
+const spanBye = document.querySelector("#bye");
+
+spanBye.remove();
+```
+Then use `append` to put it back
+```js
+<div>
+    <span id="hi">Hi</span>
+    <span id="bye">Bye</span>
+</div>
+spanBye.remove();
+spanBye.append();
+```
+
+## Get Attributes
+
+```js
+console.log(spanHi.getAttribute('id'))
+```
+
+But there is a method on getAttribute alread to do this:
+
+```js
+console.log(spanHi.id)
+```
+## Set Attributes
+
+```js
+spanHi.setAttribute('id', 'newID'))
+// or do the same thing by:
+spanHi.id = 'newID'
+```
+
+## Remove Attributes
+
+```js
+spanHI.removeAttribute("title")
+```
+
+## Date Attributes
+```js
+<div>
+    <span id="hi" data-test="This is a test">Hi</span>
+    <span id="bye">Bye</span>
+</div>
+
+const spanHi = document.querySelector("#hi");
+const spanBye = document.querySelector("#bye");
+
+console.log(spanHi.dataset)
+```

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "./../../../layouts/BaseLayout.astro";
+import TagsFilter from "./../../../components/TagsFilter.astro";
+import BlogPostSummary from "./../../../components/BlogPostSummary.astro";
+
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+export async function getStaticPaths() {
+
+  const allBlogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+
+  allBlogPosts.sort(
+    (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)
+  );
+
+  const allTags = new Set();
+
+  allBlogPosts.map((blogPost) => {
+    blogPost.data.tags &&
+      blogPost.data.tags.map((tag) => allTags.add(tag.toLowerCase()));
+  });
+
+
+  return Array.from(allTags).flatMap((tag) => {
+    const UnsortedfilteredPosts = allBlogPosts.filter(
+      (blogPost) => blogPost.data.tags.includes(tag) // tag select is a variable passed in the url.
+    );
+
+    const filteredBlogPosts = UnsortedfilteredPosts.sort(
+      (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)
+    );
+
+  return filteredBlogPosts.flatMap((post) => ({
+      params: { tag },
+      props: { filteredBlogPosts },
+    }));
+  });
+}
+
+const { tag } = Astro.params;
+const { filteredBlogPosts } = Astro.props;
+---
+
+<BaseLayout title="Advisor Wanted">
+  <TagsFilter selectedTag={tag} />
+
+    <section class="blog-summary-container">
+        {filteredBlogPosts.slice(0, 10).map(blogPost => (
+            <BlogPostSummary blogPost={blogPost} linkToBlog={true} />            
+        ))
+        }
+    </section>
+        
+</BaseLayout>
+
+<style>
+  ul {
+    list-style-type: none;
+  }
+</style>

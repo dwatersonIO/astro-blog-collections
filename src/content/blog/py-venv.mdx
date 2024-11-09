@@ -1,0 +1,29 @@
+---
+layout: ../../layouts/BlogPostLayout.astro
+title: Virtual Environments in Python
+author: David Waterson
+date: 2023-01-24
+category: computers
+tags: [python]
+description: Setup a virtual environment in Linux and Windows  
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+## Activate virtual environment
+
+*Windows*
+```bash
+venv\scripts\activate.bat
+```   
+*Linux*
+```bash
+source .venv/bin/activate
+```
+To deactivate a virtual environment one command used for all operating systems:
+`deactivate`

@@ -1,0 +1,22 @@
+---
+title: Vue Build Tool-Setup for TS but use JS
+author: David Waterson
+date: 2024-08-11
+category: computers
+tags: [vue]
+description: Setup for Typescript but use Javascript for now
+---
+
+When you get started you will want to setup build for TypeScript if needed later even if for now you prefer to stick with Javascript. 
+
+Modify the `compilerOptions` of the 'tsconfig.json' file. Simply make sure you have the `allowJs` option set to `true`
+
+
+```json
+{
+  "files": [],
+  "compilerOptions": {
+    "allowJs": true
+  },
+}
+```

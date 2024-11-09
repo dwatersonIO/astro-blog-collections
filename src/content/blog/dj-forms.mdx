@@ -1,0 +1,121 @@
+---
+title: How to use Django Forms
+author: David Waterson
+date: 2024-03-27
+category:
+tags: [django]
+description: There are two main ways we can use Django forms to send data to the back end. Learn both of them
+image: '../../public/punct.png'
+
+---
+# {frontmatter.title}
+> {frontmatter.description}
+In our example we will use a form to process a data query or search. The simplest way to to use a basic HTML form as shown below. The `name` attribute is important since it will be references in our Django view
+
+## First Way: Use a simple HTML form
+```html
+<!-- template -->
+<input  type="search" placeholder="Search notes..." name="searched">
+<button type="submit">Search</button> 
+```
+Then setup your logic in the `views.py` form
+
+```python
+# views.py
+if request.method == "POST":
+    searched = request.POST['searched'] # searched is the name attribute of the HTML form
+    # In this example we will filter the Note.text database field for the search text
+    notes = Note.objects.filter(text__contains=searched)
+    return render(request, 'notes/search_note.html', {"searched":searched, "notes": notes})
+```
+
+
+## Second and Better Way
+
+Use the Django form functionality to refer to the form in the template and then submit the data to the backend. This option does not depend on using the `name` attribute.
+```python
+# template
+<form method="post" name="search_text" action="{% url 'search_note' %}">
+    {% csrf_token %}
+    {{ form.text }}
+    {{ form.type }}
+    <button type="submit">Search</button> 
+</form>
+```
+Then setup the logic to process the form. 
+
+```python
+# views.py
+def search_note(request):
+    if request.method == "POST":
+        form=NoteForm(request.POST) # create an instance of the form sent
+        if form.is_valid():
+            searched=form.cleaned_data["text"]
+            notes = Note.objects.filter(text__contains=searched)	
+
+    else: # if this was a GET request then load empty form and send all data to the template
+        notes = Note.objects.all().order_by('-date_created')
+        form=NoteForm()
+
+return render(request, 'notes/search_note.html', {"form": form, "notes": notes})
+```
+
+## Searching and Model forms
+
+When deciding on a form to have the enter data into a form it seems best to use the ModelForm class. This model form will then use the same fields as specified in the model which is usually what you want.
+
+The Model form will have fields that are required for data entry. But for searching you may not wish to force the user to search on every field. So in this case it is I created another form for searching only.
+
+
+But in my example shown below I only wanted the user to have to search on the Summary field. I did not want to force the user to have to enter or select a search data in the Tags or Text fields. After checking the Django documentation on how to modify the ModelForm to do this I concluded in the end a simpler solution for this use case was to set up a search form called NoteSearchForm separately as shown below. Obviously you then need to update your 'views.py' accordingly.
+
+```python
+from django import forms
+from django.forms import ModelForm
+from notes.models import Note, Tag
+
+class NoteForm(ModelForm):
+    class Meta:
+        model = Note
+        fields = ['summary','text','tags']
+        widgets = {
+            'tags': forms.CheckboxSelectMultiple 
+        }
+
+class NoteSearchForm(forms.Form):
+    summary = forms.CharField(required=False)
+    text = forms.CharField(required=False)
+    tags = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), required=False, widget=forms.CheckboxSelectMultiple) 
+```
+    
+Now the ```views.py``` will look like this:
+```python
+def search_note(request):
+	if request.method == 'POST':
+
+		form=NoteSearchForm(request.POST)
+		
+		if form.is_valid():
+			summary=form.cleaned_data["summary"]
+			text = form.cleaned_data["text"]
+			tags = form.cleaned_data["tags"]
+
+		# Start with an empty queryset
+		notes = Note.objects.all()
+
+		# Filter based on submitted data
+		if summary:
+			notes = notes.filter(summary__icontains=summary)
+		if text:
+			notes = notes.filter(text__icontains=text)
+		if tags:
+			notes = notes.filter(tags__in=tags)
+			
+		form=NoteSearchForm()	
+
+	else:
+		notes = Note.objects.all().order_by('-date_created')
+		form=NoteSearchForm()
+		
+	return render(request, 'notes/search_note.html', {"form": form, "notes": notes})
+```

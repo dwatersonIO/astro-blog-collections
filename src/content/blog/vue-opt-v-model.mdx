@@ -1,0 +1,96 @@
+---
+title: Vue Options API V-model
+author: David Waterson
+date: 2024-08-07
+category: computers
+tags: [vue]
+description: Vue Options API-How to use V-Model directive
+---
+# {frontmatter.title}
+> {frontmatter.description}
+
+## Using the v-model directive
+
+V-model provides a way to perform two-away data binding. It is especialy useful when handling form data that needs to affect other areas of the UI. This example shows how:
+
+
+```html
+   <div id="app">
+        <h1>Counter</h1>
+        <p>{{ count }}</p>
+        <button v-on:click="incrementCount(10, $event)">Increment Count</button>
+        <br>
+        <label for="incrementAmount">Increment Amount</label>
+        <input type="number"
+            v-model="incrementAmount"
+            placeholder="Enter increment amount" />
+        <h2> {{ incrementAmount }}</h2>
+    </div>  
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const { createApp } = Vue
+
+        const app = createApp ({
+            data () {
+                return {
+                    count: 10,
+                    incrementAmount: 2,
+                    message: "it works"
+                }
+            },
+            methods: {
+                incrementCount(newAmount, event) {
+                    this.count += this.incrementAmount
+                    console.log(newAmount)
+                    console.log(event)
+                }
+            }
+        })
+        app.mount('#app')
+    </script>
+```
+
+## Passing Arguments to Function Including the Event
+
+Vue passes an event object by default when function is called.
+
+```html
+<script>
+    methods: {
+        incrementCount(event) {
+            this.count += this.incrementAmount
+            
+            // Below will result in  console showing "PointerEvent"
+            console.log(event) 
+        }
+    }
+</script>
+```
+
+But when another argument is pass the event disappears unless you specify you want both. Notice how this is done by passing `$event` as a function argument and then accepting both the argument and the event when writing the function in Methods:
+
+```html
+<div id="app">
+    <button v-on:click="incrementCount(11, $event)">Increment Count</button>
+    <h2> {{ incrementAmount }}</h2>
+</div>  
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+<script>
+    const { createApp } = Vue
+
+    const app = createApp ({
+        methods: {
+            incrementCount(newAmount, event) {
+                this.count += this.incrementAmount
+                console.log(newAmount)
+                console.log(event)
+            }
+        }
+    })
+    app.mount('#app')
+ </script>
+```

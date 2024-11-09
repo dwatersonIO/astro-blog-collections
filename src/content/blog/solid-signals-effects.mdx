@@ -1,0 +1,71 @@
+---
+title: Signals and Effects in Solid
+author: David Waterson
+date: 2024-05-26
+category: computers
+tags: [solid js]
+description: Learn how Signals and Effects work hand in hand
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Signals-Getters and Setters
+
+Notice that `count` and `setCount` are not values but functions.  The createSignal has a starting value of 0
+
+```js
+import { render } from "solid-js/web";
+import { createSignal } from "solid-js";
+
+function Counter() {
+  const [count, setCount] = createSignal(0);
+
+  setInterval(() => setCount(count() + 1), 1000);
+
+  return <div>Count: {count()}</div>;
+}
+```
+## Effects
+
+Sometimes you will want a signal to be used in  more than one place. For example imagine I wanted to use the `count()` getter in another place in my code. For this we can implement `createEffect`. This is needed because the component only renders once. So `createEffect` will create an observable and will trigger what is called a side effect.
+
+In example below we want to update `count()` in the console also. For this we need to use `createEffect` as shown below:
+
+```js
+import { createSignal, createEffect } from 'solid-js';
+
+function Counter() {
+  const [count, setCount] = createSignal(0);
+  createEffect(() => {
+    console.log("The count is now", count());
+  });
+
+  return <button onClick={() => setCount(count() + 1)}>Click Me</button>;
+}
+
+render(() => <Counter />, document.getElementById('app'));
+```
+
+If we were to take out the `createEffect` function then the console would only update the count once, when the component first loads. Wrapping it in `createEffect` ensures the reactity is transferred to the console log. 
+
+## Derived Signals
+Sometimes this are called computed values in other frameworks.
+In the example below you can see an example of a `derived signal` used to double the value of count.
+
+```js
+import { createSignal, createEffect} from "solid-js";
+
+export default function Counter2() {
+    const[count, setCount] = createSignal(0);
+    const doubleCount = () => count() * 2;
+
+    createEffect(() => {
+        console.log("The count is now: ", count())
+        })
+    return (
+        <div>
+        <button onClick={() => setCount(count()+1)}>Click Me:{count}</button>
+        <p>Double count is: {doubleCount()}</p>
+        </div>
+    )
+    }
+  ```

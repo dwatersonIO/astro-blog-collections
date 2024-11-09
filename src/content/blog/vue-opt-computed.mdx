@@ -1,0 +1,56 @@
+---
+title: Vue Options API Computed Properties
+author: David Waterson
+date: 2024-08-09
+category: computers
+tags: [vue]
+description: Vue Options API-How to use computed properties
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Why Use Computer Properties?
+
+Computed properties allow you to filter and make calculations on already existing data. That way, when the source data changes, the computed properties will be automatically updated. For example you could use a computed property to sum totals of existing data. Here is an example below:
+
+
+```html
+<div id="app">
+    <h2>Summary of how many characters are appostles</h2>
+    <li>Apostle: {{apostleList.length}}</li>  // number of characters who were an apostle
+    <hr>
+    <h2>Bible Book Characters</h2>
+    <ul>
+        <li v-for="(character, index) in characterList" :key="character.id">{{ index +1}} - {{ character.name}} - {{ character.section}} - {{character.details}}
+            <button v-on:click="favCharacter(character)">Favorite me</button>
+        </li>
+    </ul>
+</div>  
+
+<script>
+    const { createApp } = Vue
+
+    const app = createApp ({
+        data () {
+            return {
+                characterList: [
+                    {id: 1, name: "1Peter", details: ["writer", "apostle", "faithful","greek"]},
+                    {id: 2, name: "Job", details: ["writer", "", "faithful","hebrew"]},
+                    {id: 3, name: "Judas", details: ["apostle", "unfaithful","hebrew"]},
+                    ],
+
+            }
+        },
+        computed: {
+            apostleList() {
+                return this.characterList.filter(
+                    character => character.details.indexOf('apostle') > -1
+                )
+
+            },
+        },
+        methods: {
+        }
+    })
+    app.mount('#app')
+</script>
+```

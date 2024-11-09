@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TagsFilter from "../../components/TagsFilter.astro";
+import BlogPostSummary from "../../components/BlogPostSummary.astro";
+
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+
+const allBlogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+
+allBlogPosts.sort(
+  (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)
+);
+
+---
+
+<BaseLayout title="Advisor Wanted">
+  <TagsFilter />
+
+    <section class="blog-summary-container">
+        {allBlogPosts.slice(0, 10).map(blogPost => (
+            <BlogPostSummary blogPost={blogPost} linkToBlog={true} />            
+        ))
+        }
+    </section>
+        
+</BaseLayout>
+
+<style> 
+    
+   
+
+
+@media (max-width: 600px) {
+.container {
+    grid-template-columns: 1fr;
+}
+}
+</style>
+    
+    
+
+
+
+
+

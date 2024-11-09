@@ -1,0 +1,44 @@
+---
+---
+
+<footer>
+  <hr />
+  <ul class="footer">
+    <li>dw-blog</li>
+    <li><small>Last reviewed: March 7, 2024  - &copy 2024</small></li>
+  </ul>
+</footer>
+
+<style>
+  hr {
+    margin-top: 1em;
+  }
+  .footer {
+    display: flex;
+    min-height: 5vh;
+    margin: 0 0 0.2em 0;
+    padding: 0 1em 0 1em;
+
+    /* brand to left, space in between then menu to the right */
+    justify-content: space-between;
+
+    /* centre text vertically */
+    align-items: center;
+
+    /* background-color: rgba(53, 8, 65, 0.801); */
+    color: grey;
+    border-radius: 7px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  @media (max-width: 600px) {
+    .navbar {
+      min-height: 12vh;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+  }
+</style>

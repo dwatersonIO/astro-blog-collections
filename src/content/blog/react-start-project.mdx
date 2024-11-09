@@ -1,0 +1,50 @@
+---
+title: Start a New React Project
+author: David Waterson
+date: 2024-03-04
+category: react
+tags: [react,javascript]
+description: Setup a new React project
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Use Vite
+
+
+```bash
+npm create vite@latest my-quiz -- --template react
+```
+
+## Get rid of the boilerplate
+
+Delete the contains of app.css, index.css and assets folder
+
+
+
+Contents of app.jsx
+```js
+function App() {
+
+  return (
+    <div className="App">
+      <h1>Hello</h1>
+    </div>
+  )
+}
+
+export default App
+```
+
+In the `main.jsx` file you can get rid of strict mode so file will be like this.
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <App />
+)
+
+```

@@ -1,0 +1,28 @@
+---
+title: Change Grub Boot order
+slug: grub-boot
+author: David Waterson
+date: 2022-11-13
+category: softwaree
+tags: [linux]
+description: Grub defaults to Linux on boot. Learn how to change boot order so windows is default  
+---
+# {frontmatter.title}
+> {frontmatter.description}
+By default, grub will boot item 0. Thus to change the boot order, you need to define the number of items you want to boot by default in the grub configuration file /etc/default/grub.
+Change grub boot order   
+
+To change the boot order, prioritize a different OS or kernel configuration edit the file /etc/default/grub using any text editor you want. You can edit it using nano, as shown in the example below. Remember, you need superuser privileges to edit the grub configuration file.
+
+```
+sudo nano /etc/default/grub
+```
+
+Change the default number (index starts at 0). Then update grub by executing sudo update-grub as shown below.
+
+```
+sudo update-grub
+```
+
+
+

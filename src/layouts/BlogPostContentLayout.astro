@@ -1,0 +1,22 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import TagsFilter from "../components/TagsFilter.astro";
+
+const { frontmatter } = Astro.props;
+---
+<!-- TODO Here is my comment -->
+<!-- ! Here is my comment -->
+<?-- ! Here is my comment -->
+<!-- * Here is my comment -->
+
+<section class="single-blog-post-container">
+  <slot />
+  </section>
+
+<style>
+  .single-blog-post-container {
+     padding: 5px 5px 5px 5px; 
+     /* background-color: yellow; */
+  }
+  
+  </style>

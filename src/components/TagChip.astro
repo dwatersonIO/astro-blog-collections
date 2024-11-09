@@ -1,0 +1,36 @@
+---
+const { nameOfTag, selected } = Astro.props;
+---
+
+{
+    selected ? (
+        <a class="tag tag-selected" href={`/blog/tag/${nameOfTag}`}>
+            {nameOfTag}
+        </a>
+    ) : (
+        <a class="tag tag-selectable" href={`/blog/tag/${nameOfTag}`}>
+            {nameOfTag}
+        </a>
+    )
+}
+
+
+
+<style>
+.tag {
+    color: var(--text-col-pil);
+    padding: 3px 6px 4px 6px;
+    font-size: calc(var(--text-size) * .9);
+    background-color: var(--bg-col-pil);
+    border-radius: 4px;
+    text-decoration: none;
+ }
+  
+ .tag-selected {
+    background-color: var(--brand);
+    color: var(--text-col-pil);
+  }
+.tag-selectable:hover {
+  background-color: var(--soft-brand);
+}
+</style>

@@ -1,0 +1,37 @@
+---
+title: Using the Pickle Module
+author: David Waterson
+date: 2023-09-29
+category: computers
+tags: [python]
+description: The Pickle module is a convenient way of persisting your data fast    
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## How to pickle a Python object
+
+```py
+import pickle
+
+# An arbitrary collection of objects supported by pickle.
+data = {
+    'a': [1, 2.0, 3+4j],
+    'b': ("character string", b"byte string"),
+    'c': {None, True, False}
+}
+
+with open('data.pickle', 'wb') as f:
+    # Pickle the 'data' dictionary using the highes
+```
+## How to read pickled a data
+
+```py
+import pickle
+
+with open('data.pickle', 'rb') as f:
+    # The protocol version used is detected automatically, so we do not
+    # have to specify it.
+    data = pickle.load(f)
+```
+
+

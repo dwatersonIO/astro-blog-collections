@@ -1,0 +1,24 @@
+---
+title: Handy Boolean Expressions in Python
+author: David Waterson
+date: 2024-04-17
+category: computers
+tags: [python]
+description: A list of some Boolean expressions in Python that can often come in useful    
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Testing if a variable is empty
+
+This is useful if you want to check form contents
+
+```py
+# Assuming your string variable is named 'text_variable'
+text_variable = "   "  # Example: contains only whitespace characters
+
+# Boolean expression to check if 'text_variable' is not blank
+is_not_blank = text_variable and not text_variable.isspace()
+
+# Print the result
+print(is_not_blank)
+```

@@ -1,0 +1,92 @@
+---
+const { blogPost, linkToBlog } = Astro.props;
+---
+
+<div class="blog-post-preview">
+    <div>
+    {
+        linkToBlog ? (
+            <h1><a href={`/blog/${blogPost.slug}`}>{blogPost.data.title}</a></h1>
+
+        ) : (
+            <h1 class="blog-post-title">{blogPost.data.title}</h1>
+
+        )
+    }
+            
+    <span class="blog-post-date">
+        {new Date(blogPost.data.date).toLocaleDateString()}
+    </span>
+
+    {blogPost.data.tags.map(tag => (
+        <span><a class="tag" href={`/blog/tag/${tag}`}>{tag + " "}</a></span>
+    ))}
+        
+    <div class="blog-post-description">
+
+    
+               
+    {
+        linkToBlog ? (
+
+            <h3>
+                {blogPost.data.description}{" "}
+                    <a class="read-more" href={`/blog/${blogPost.slug}`}>
+                    read more
+                    </a>
+            </h3>
+        ) : (
+
+            <h3>
+                {blogPost.data.description}{" "}
+            </h3>
+
+        )
+        }        
+
+       </div>
+
+<style> 
+
+.tag {
+    color: var(--text-col-pil);
+    padding: 2px 5px 3px 5px;
+    margin-right: 4px;
+    font-size: calc(var(--text-size) * .8);
+    background-color: var(--bg-col-pil);
+    border-radius: 4px;
+    text-decoration: none;
+ }
+
+ .tag:hover {
+  background-color: var(--soft-brand);
+}
+
+.blog-post-preview {
+    border-radius: .5em; 
+    padding: 10px 10px 10px 10px; 
+    background-color: var(--bg-col-fade);
+}
+
+.blog-post-date {
+    font-size: calc(var(--text-size) * .7);
+}
+
+.blog-post-description {
+    margin-top: .3rem;
+    line-height: 1.2; 
+}
+
+a.read-more {
+  color: var(--text-col-highlight);
+  font-weight: 600;
+  font-size: calc(var(--text-size) * .7);
+}
+
+@media (max-width: 600px) {
+.container {
+    grid-template-columns: 1fr;
+}
+
+</style>
+

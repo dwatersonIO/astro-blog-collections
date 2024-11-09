@@ -1,0 +1,31 @@
+---
+title: Basic Pandas Operations
+author: David Waterson
+date: 2023-02-04
+category:
+tags: [python,pandas]
+description: Learn the basic Pandas api for analysing data
+---
+# {frontmatter.title}
+> {frontmatter.description}
+## Import and basic info
+
+```py
+import pandas as pd
+df = pd.read_csv('data/path.. .csv', index_col='email')
+```
+Note: index_col if you want to change default index when importing
+
+```py
+df.shape # see size of df
+df.head (10) # display first 10 rows.
+df.tail(10)  # display last 10 rows
+
+df.info()  #  Show columns
+
+pd.set_option('display.max_columns', 85) # see all 85 columns, do not truncate
+
+df[[ 'last', 'email']]  # this passes a list of column names so will only display those
+```
+
+
