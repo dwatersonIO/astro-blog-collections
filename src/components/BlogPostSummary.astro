@@ -2,6 +2,8 @@
 const { blogPost, linkToBlog } = Astro.props;
 ---
 
+   
+
 <div class="blog-post-preview">
     <div>
     {
@@ -38,19 +40,18 @@ const { blogPost, linkToBlog } = Astro.props;
         ) : (
 
             <h3>
-                {blogPost.data.description}{" "}
+                {blogPost.data.description}
             </h3>
 
         )
         }        
 
        </div>
-
 <style> 
 
 .tag {
     color: var(--text-col-pil);
-    padding: 2px 5px 3px 5px;
+    padding: 2px 4px 4px 4px;
     margin-right: 4px;
     font-size: calc(var(--text-size) * .8);
     background-color: var(--bg-col-pil);
@@ -75,12 +76,13 @@ const { blogPost, linkToBlog } = Astro.props;
 .blog-post-description {
     margin-top: .3rem;
     line-height: 1.2; 
+
 }
 
 a.read-more {
   color: var(--text-col-highlight);
   font-weight: 600;
-  font-size: calc(var(--text-size) * .7);
+  font-size: calc(var(--text-size) * .8);
 }
 
 @media (max-width: 600px) {

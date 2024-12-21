@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import TagsFilter from "../components/TagsFilter.astro";
 import BlogPostSummary from "../components/BlogPostSummary.astro";
+
 
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -10,41 +12,29 @@ const allBlogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
 allBlogPosts.sort(
   (a, b) => Date.parse(b.data.date) - Date.parse(a.data.date)
 );
----
-<BaseLayout title="Advisor Wanted">
-<h1 class="title">Welcome to the Home Page of David Waterson</h1>
 
-<h2><b>Portfolio Projects</b></h2>
-<ul>
-    <li><a href="https://github.com/dwatersonIO/django-crud-fbv">Django Function-Based View Crud App With HTMX</a></li>
-    <li><a href="https://github.com/dwatersonIO/django-crud-cbv">Django Class-Based Views Crud App</a></li>
-    <li><a href="https://github.com/dwatersonIO/astro-blog-glob">Astro 2 Blog using the Glob API</a></li>
-    <li><a href="https://github.com/dwatersonIO/astro-blog-collections">Basic Astro 4 Blog using the Contents Collections API</a></li>
-</ul>
-<h2><b>Recent Blog Posts</b></h2>
-<section class="blog-summary-container">
-    {allBlogPosts.slice(0, 4).map(blogPost => (
-        <BlogPostSummary blogPost={blogPost} linkToBlog={true} />            
-    ))
-    }
-</section>
+---
+
+<BaseLayout title="DW Blog">
+  <TagsFilter />
+
+    <section class="blog-summary-container">
+
+    
+        {allBlogPosts.slice(0, 100).map(blogPost => (
+            <BlogPostSummary blogPost={blogPost} linkToBlog={true} />            
+        ))
+        }
+    
+    </section>
+        
 </BaseLayout>
 
-<style>
-.title {
-  color: var(--brand);
-  font-weight: 600;
-  font-size: calc(var(--text-size) * 1.4);
-  line-height: 2; 
-  background-color: var(--bg-col);
 
-}    
+    
+    
 
-ul {
-    list-style-type:none;
-    margin-left: 0px;
-    color: var(--text-col);
-    font-size: calc(var(--text-size) * .9);
-}
 
-</style>
+
+
+

@@ -1,73 +1,73 @@
 ---
-import "../styles/global.css";
+
+
 ---
+<nav class="navbar">
+  <div class="brand-title">
+    <a href="/">The Blog of David Waterson</a>
+  </div>
+
+  <div class="nav-list">
+    <ul>
+      <li><a href="/portfolio">Portfolio</a></li>
+      <!-- <li><a href="https://lucia-waterson.pixels.com/">Beautiful Art</a></li> -->
+      <img id="icon" data-theme-change src="/assets/dark.png" alt=""/> 
+    </ul>
+  </div>
+</nav>
 
 <header>
-  <nav class="navbar">
-    <div class="brand-title">
-      <a href="/">advisor wanted</a>
-    </div>
-
-    <div class="nav-list">
-      <ul>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/">Portfolio</a></li>
-        <!-- <li><a href="https://lucia-waterson.pixels.com/">Beautiful Art</a></li> -->
-        <img id="icon" data-theme-change src="/assets/dark.png" alt=""/> 
-      </ul>
-    </div>
-  </nav>
-
   <script is:inline>
- 
-  const LS_THEME = 'astro.theme'
-  let selectedTheme   
-  let icon = document.getElementById("icon")
-  
-  if (localStorage.getItem(LS_THEME)) {   // Check if a theme already in local storage
-    selectedTheme = localStorage.getItem(LS_THEME)   // Set selectedTheme to local storage value
-      if (selectedTheme === "light") {  
-        icon.src = "/assets/dark.png"   // if theme is light then icon should be to change to dark
-      } else {
-        selectedTheme = "dark" 
-        icon.src = "/assets/light.png"   // if theme is dark then icon should be to change to light   
-      }         
-  } else {
-    selectedTheme = "light"   // if no theme in local storage default to light theme
-    localStorage.setItem(LS_THEME, selectedTheme)
-    icon.src = "/assets/light.png"
-  }
-  
-  document.documentElement.setAttribute("data-theme", selectedTheme) 
-
-  const themeChangeButton = document.querySelector('[data-theme-change]')
-  
-  themeChangeButton.addEventListener('click', e => {
-    let selectedTheme = localStorage.getItem(LS_THEME)      
-
-    if ( selectedTheme == 'light') {
-      selectedTheme = 'dark'
-      icon.src = "/assets/light.png"
+    const LS_THEME = 'astro.theme'
+    let selectedTheme   
+    let icon = document.getElementById("icon")
+    
+    if (localStorage.getItem(LS_THEME)) {   // Check if a theme already in local storage
+      selectedTheme = localStorage.getItem(LS_THEME)   // Set selectedTheme to local storage value
+        if (selectedTheme === "light") {  
+          icon.src = "/assets/dark.png"   // if theme is light then icon should be to change to dark
+        } else {
+          selectedTheme = "dark" 
+          icon.src = "/assets/light.png"   // if theme is dark then icon should be to change to light   
+        }         
     } else {
-      selectedTheme = 'light'
-      icon.src = "/assets/dark.png"
+      selectedTheme = "light"   // if no theme in local storage default to light theme
+      localStorage.setItem(LS_THEME, selectedTheme)
+      icon.src = "/assets/light.png"
     }
     
-    document.documentElement.setAttribute("data-theme", selectedTheme);
-    localStorage.setItem(LS_THEME, selectedTheme)
-  })
+    document.documentElement.setAttribute("data-theme", selectedTheme) 
 
+    const themeChangeButton = document.querySelector('[data-theme-change]')
+    
+    themeChangeButton.addEventListener('click', e => {
+      let selectedTheme = localStorage.getItem(LS_THEME)      
 
-  
+      if ( selectedTheme == 'light') {
+        selectedTheme = 'dark'
+        icon.src = "/assets/light.png"
+      } else {
+        selectedTheme = 'light'
+        icon.src = "/assets/dark.png"
+      }
+      
+      document.documentElement.setAttribute("data-theme", selectedTheme);
+      localStorage.setItem(LS_THEME, selectedTheme)
+    })
   </script>
-
 </header>
-
 
 <style>
   .navbar {
-    padding: 0.6em 0 0.6em 0em;
+    overflow: hidden;
+    padding: 0.6em 0 0 0em;
     display: flex;
+    background-color: var(--bg-col);
+    top: 0;
+    z-index: 1000;
+    position: sticky;
+    height: 60px;
+
 
     /* brand to left, space in between then menu to the right */
     justify-content: space-between;
@@ -79,11 +79,12 @@ import "../styles/global.css";
 
   .brand-title a {
     color: var(--text-col-highlight);
-    font-size: calc(var(--text-size) * 2.2);
-    font-family: 'Permanent Marker', cursive;
+    font-size: calc(var(--text-size) * 1.8);
+    font-weight: 400;
     letter-spacing: 2px;
     text-decoration: none;
     line-height: 1.2;
+    letter-spacing: -1px;
   }
 
   .nav-list ul {
@@ -93,14 +94,14 @@ import "../styles/global.css";
 
   .nav-list li {
     list-style: none;
+    font-size: calc(var(--text-size) * 1.2);
+
   }
 
   .nav-list li a {
     text-decoration: none;
     color: var(--brand);
-    padding: 0 0.8em 0 0;
-    font-size: calc(var(--text-size) * 1.1);
-    font-weight: 600;
+    padding: 0 0.8em 0 0;    
   }
 
   .nav-list li a:hover {
@@ -114,7 +115,7 @@ import "../styles/global.css";
 
   
  #icon {
-  width: 30px;
+  width: 20px;
   cursor: pointer;
   margin: 0 1em 0 0
   }
@@ -123,16 +124,28 @@ import "../styles/global.css";
   .navbar {
     min-height: 8vh;
     flex-direction: column;
-    align-items: center;
+    height: 65px;
+    flex
   }
 
   .brand-title a {
-    font-size: calc(var(--text-size) * 2.2);
+    font-size: calc(var(--text-size) * 1.5);
   }
 
   .nav-list ul {
-    flex-direction: column;
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+
+
+'  }
+
+  .nav-list li a {
+    text-decoration: none;
+    color: var(--brand);
+    font-size: calc(var(--text-size) * 1.3);
   }
+
+
 }
 
 </style>

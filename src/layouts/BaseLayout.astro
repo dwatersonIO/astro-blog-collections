@@ -1,9 +1,10 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { ViewTransitions } from 'astro:transitions';
-
 import "../styles/global.css";
+
+
+
 
 export interface Props {
   title?: string;
@@ -16,10 +17,12 @@ const { title = "DW Blog" } = Astro.props as Props;
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /> -->
+    
     
     <title>{title}</title>
+
 
   </head>
   <body>
@@ -30,3 +33,4 @@ const { title = "DW Blog" } = Astro.props as Props;
 
   </body>
 </html>
+
