@@ -141,259 +141,252 @@ declare module 'astro:content' {
   slug: "astro-netlify-install";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "astro-shiki-themes.mdx": {
 	id: "astro-shiki-themes.mdx";
   slug: "astro-shiki-themes";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "css-flexbox copy.mdx": {
 	id: "css-flexbox copy.mdx";
   slug: "css-flexbox-copy";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "css-flexbox.mdx": {
 	id: "css-flexbox.mdx";
   slug: "css-flexbox";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-basic-crud.mdx": {
 	id: "dj-basic-crud.mdx";
   slug: "dj-basic-crud";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
-} & { render(): Render[".mdx"] };
-"dj-csv.mdx": {
-	id: "dj-csv.mdx";
-  slug: "dj-csv";
-  body: string;
-  collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-forms.mdx": {
 	id: "dj-forms.mdx";
   slug: "dj-forms";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-m2m-search.mdx": {
 	id: "dj-m2m-search.mdx";
   slug: "dj-m2m-search";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-model.mdx": {
 	id: "dj-model.mdx";
   slug: "dj-model";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-new-project.mdx": {
 	id: "dj-new-project.mdx";
   slug: "new-django";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "dj-secret-key.mdx": {
 	id: "dj-secret-key.mdx";
   slug: "dj-secret-key";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "git-hub-site.mdx": {
 	id: "git-hub-site.mdx";
   slug: "git-hub-site";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "git-hub.mdx": {
 	id: "git-hub.mdx";
   slug: "git-hub";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "html-new-elements.mdx": {
 	id: "html-new-elements.mdx";
   slug: "html-new-elements";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "js-arrray-methods.mdx": {
 	id: "js-arrray-methods.mdx";
   slug: "js-arrray-methods";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "js-dom-methods.mdx": {
 	id: "js-dom-methods.mdx";
   slug: "js-dom-methods";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "js-dom-summary.mdx": {
 	id: "js-dom-summary.mdx";
   slug: "js-dom-summary";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "js-event-listener.mdx": {
 	id: "js-event-listener.mdx";
   slug: "js-event-listener";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "linux-cmd-line.mdx": {
 	id: "linux-cmd-line.mdx";
   slug: "linux-cmd-line";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "linux-grub-boot.mdx": {
 	id: "linux-grub-boot.mdx";
   slug: "grub-boot";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "linux-path.mdx": {
 	id: "linux-path.mdx";
   slug: "mint-path";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "md-explain.mdx": {
 	id: "md-explain.mdx";
   slug: "md-explain";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-boolean.mdx": {
 	id: "py-boolean.mdx";
   slug: "py-boolean";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-matplotlib.mdx": {
 	id: "py-matplotlib.mdx";
   slug: "py-matplotlib";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-pandas.mdx": {
 	id: "py-pandas.mdx";
   slug: "py-pandas";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-pickle.mdx": {
 	id: "py-pickle.mdx";
   slug: "py-pickle";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-pip.mdx": {
 	id: "py-pip.mdx";
   slug: "py-pip";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-regex.mdx": {
 	id: "py-regex.mdx";
   slug: "py-regex";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-tkinter.mdx": {
 	id: "py-tkinter.mdx";
   slug: "py-tkinter";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "py-venv.mdx": {
 	id: "py-venv.mdx";
   slug: "py-venv";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "react-start-project.mdx": {
 	id: "react-start-project.mdx";
   slug: "react-start-project";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "solid-signals-effects.mdx": {
 	id: "solid-signals-effects.mdx";
   slug: "solid-signals-effects";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "vue-build-tools-ts.mdx": {
 	id: "vue-build-tools-ts.mdx";
   slug: "vue-build-tools-ts";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "vue-opt-computed.mdx": {
 	id: "vue-opt-computed.mdx";
   slug: "vue-opt-computed";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "vue-opt-v-bind.mdx": {
 	id: "vue-opt-v-bind.mdx";
   slug: "vue-opt-v-bind";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "vue-opt-v-if-else.mdx": {
 	id: "vue-opt-v-if-else.mdx";
   slug: "vue-opt-v-if-else";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 "vue-opt-v-model.mdx": {
 	id: "vue-opt-v-model.mdx";
   slug: "vue-opt-v-model";
   body: string;
   collection: "blog";
-  data: InferEntrySchema<"blog">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -405,5 +398,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("./../src/content/config.js");
+	export type ContentConfig = never;
 }
